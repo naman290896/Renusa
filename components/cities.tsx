@@ -40,7 +40,7 @@ export function Cities() {
         </div>
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          <div className="text-center p-6 rounded-2xl hover:bg-white/5 transition-all duration-300 group animate-in fade-in slide-in-from-bottom delay-300">
+          <div className="text-center px-6 rounded-2xl transition-all duration-300 group animate-in fade-in slide-in-from-bottom delay-300">
             <div className="flex items-center justify-center mb-4">
               <MapPin className="h-8 w-8 text-white group-hover:scale-110 transition-transform" />
             </div>
@@ -49,7 +49,7 @@ export function Cities() {
             </div>
             <div className="text-lg text-muted-foreground">Cities</div>
           </div>
-          <div className="text-center p-6 rounded-2xl hover:bg-white/5 transition-all duration-300 group animate-in fade-in slide-in-from-bottom delay-500">
+          <div className="text-center px-6 rounded-2xl  transition-all duration-300 group animate-in fade-in slide-in-from-bottom delay-500">
             <div className="flex items-center justify-center mb-4">
               <TrendingUp className="h-8 w-8 text-white group-hover:scale-110 transition-transform" />
             </div>
@@ -58,7 +58,7 @@ export function Cities() {
             </div>
             <div className="text-lg text-muted-foreground">Retail Partners</div>
           </div>
-          <div className="text-center p-6 rounded-2xl hover:bg-white/5 transition-all duration-300 group animate-in fade-in slide-in-from-bottom delay-700">
+          <div className="text-center px-6 rounded-2xl  transition-all duration-300 group animate-in fade-in slide-in-from-bottom delay-700">
             <div className="flex items-center justify-center mb-4">
               <div className="text-4xl group-hover:scale-110 transition-transform">❤️</div>
             </div>

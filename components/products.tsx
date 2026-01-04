@@ -1,113 +1,64 @@
 "use client"
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { Sparkles } from "lucide-react"
+import { Sparkles, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const productsByCategory = {
   "Fryums": [
     {
       name: "Red Chilli Papad",
-      description: "Traditional fennel seeds with a perfect blend of sweet and aromatic flavors",
+      description: "Spicy red chilli papad delivering bold heat, crisp texture, and authentic traditional Indian flavor",
       image: "/redChilliPapad.jpg",
     },
     {
       name: "Oval Pani Patashe Papad",
-      description: "Extra large premium fennel seeds with enhanced sweetness",
+      description: "Extra-large oval papad designed for pani patashe, offering superior crunch and excellent filling support",
       image: "/ovalPaniPatashe.jpg",
     },
     {
       name: "3D Papad",
-      description: "Lightly roasted fennel seeds with a smoky aroma",
+      description: "Innovative 3D papad that puffs beautifully, delivering light texture, airy crunch, and premium taste",
       image: "/3DPapad.jpg",
     },
     {
-      name: "Jeera Papad",
-      description: "Lightly roasted fennel seeds with a smoky aroma",
-      image: "/jeeraPapad.jpg",
+      name: "Lehsun Papad",
+      description: "Garlic-infused papad with rich aroma, savory depth, and perfectly crisp traditional Indian bite",
+      image: "/lehsunPapad.jpg",
     },
     {
-      name: "Nally Papad",
-      description: "Lightly roasted fennel seeds with a smoky aroma",
+      name: "Sabudana Papad",
+      description: "Classic sabudana papad crafted for lightness, delicate crunch, and authentic homemade taste",
       image: "/nallyPapad.jpg",
     },
     {
-      name: "Wavy Papad",
-      description: "Lightly roasted fennel seeds with a smoky aroma",
-      image: "/wavyPapad.jpg",
-    },
-    {
       name: "Raw Aaloo Papad",
-      description: "Lightly roasted fennel seeds with a smoky aroma",
+      description: "Traditional potato papad offering clean flavor, satisfying crunch, and versatile serving possibilities",
       image: "/rawAlloo.jpg",
     }
   ],
-  "Traditional Saunf": [
+  "Candies": [
     {
-      name: "Classic Saunf",
-      description: "Traditional fennel seeds with a perfect blend of sweet and aromatic flavors",
-      image: "/fennel-seeds-saunf-colorful-indian-spices.jpg",
+      name: "Orange Candy",
+      description: "Zesty orange-flavored candy offering refreshing citrus sweetness, smooth texture, and delightful long-lasting fruity taste",
+      image: "/orangeCandy.jpg",
     },
     {
-      name: "Premium Saunf",
-      description: "Extra large premium fennel seeds with enhanced sweetness",
-      image: "/fennel-seeds-saunf-colorful-indian-spices.jpg",
-    },
-    {
-      name: "Roasted Saunf",
-      description: "Lightly roasted fennel seeds with a smoky aroma",
-      image: "/fennel-seeds-saunf-colorful-indian-spices.jpg",
-    },
+      name: "Green Candy",
+      description: "Premium green candy crafted with aromatic fennel notes, gentle sweetness, and a refreshing mouth-freshening finish",
+      image: "/greenCandy.jpg",
+    }
   ],
   "Mukhwas Mix": [
     {
       name: "Premium Mukhwas",
-      description: "A delightful mix of sesame seeds, coconut, and aromatic spices",
-      image: "/colorful-indian-mukhwas-mouth-freshener-mix.jpg",
-    },
-    {
-      name: "Royal Mukhwas",
-      description: "Luxurious blend with saffron and dry fruits",
-      image: "/colorful-indian-mukhwas-mouth-freshener-mix.jpg",
+      description: "Exquisite premium mukhwas crafted with aromatic seeds, coconut flakes, and traditional Indian spice blends",
+      image: "/fennel-seeds-saunf-colorful-indian-spices.jpg",
     },
     {
       name: "Colorful Mix",
-      description: "Vibrant assortment of seeds and spices for special occasions",
-      image: "/colorful-indian-mukhwas-mouth-freshener-mix.jpg",
-    },
-  ],
-  "Coated Varieties": [
-    {
-      name: "Mint Coated",
-      description: "Cool and refreshing mint-coated seeds for instant freshness",
-      image: "/mint-coated-colorful-candy-seeds.jpg",
-    },
-    {
-      name: "Sweet Delight",
-      description: "Sugar-coated seeds with a sweet finish",
-      image: "/colorful-sugar-coated-candy-seeds.jpg",
-    },
-    {
-      name: "Chocolate Coated",
-      description: "Unique chocolate-covered fennel seeds for dessert lovers",
-      image: "/colorful-sugar-coated-candy-seeds.jpg",
-    },
-  ],  
-  "Specialty Blends": [
-    {
-      name: "Rose Gulkand",
-      description: "Delicate rose petal preserve with aromatic seeds",
-      image: "/rose-gulkand-pink-indian-sweet.jpg",
-    },
-    {
-      name: "Spicy Mix",
-      description: "Bold and spicy blend for those who love a kick",
-      image: "/spicy-indian-namkeen-snack-mix.jpg",
-    },
-    {
-      name: "Digestive Blend",
-      description: "Specially crafted mix to aid digestion after meals",
+      description: "Vibrant colorful mukhwas mix combining seeds, spices, sweetness, and festive flavors for special occasions",
       image: "/colorful-indian-mukhwas-mouth-freshener-mix.jpg",
     },
   ],
@@ -116,6 +67,7 @@ const productsByCategory = {
 export function Products() {  
   const [selectedCategory, setSelectedCategory] = useState<string>("Fryums")
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   const categories = [...Object.keys(productsByCategory)]
 
@@ -156,9 +108,9 @@ export function Products() {
             <Button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              variant={selectedCategory === category ? "default" : "outline"}
+              variant={selectedCategory === category ? "secondary" : "outline"}
               size="lg"
-              className={`transition-all duration-300 animate-in fade-in slide-in-from-bottom ${
+              className={`transition-all duration-300 animate-in fade-in slide-in-from-bottom cursor-pointer ${
                 selectedCategory === category ? "scale-105 shadow-lg shadow-primary/20" : "hover:scale-105"
               }`}
               style={{ animationDelay: `${index * 50}ms` }}
@@ -168,38 +120,64 @@ export function Products() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-          {displayProducts.map((product, index) => (
-            <Card
-              key={`${selectedCategory}-${index}`}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className="group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 overflow-hidden border-white/20 hover:border-primary/50 animate-in fade-in slide-in-from-bottom"
-              style={{ animationDelay: `${index * 80}ms` }}
+        <div className="relative group/carousel">
+          <div className="flex sm:hidden absolute -left-2 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-10 w-10 rounded-full bg-background/80 backdrop-blur-sm pointer-events-auto border-white/10"
+              onClick={() => scroll("left")}
             >
-              <div className="aspect-square overflow-hidden relative h-40">
-                <img
-                  src={product.image || "/placeholder.svg"}
-                  alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div
-                  className={`absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent transition-opacity duration-500 ${hoveredIndex === index ? "opacity-100" : "opacity-0"}`}
-                />
-                {hoveredIndex === index && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Sparkles className="h-10 w-10 text-white animate-pulse" />
-                  </div>
-                )}
-              </div>
-              <CardContent className="p-4">
-                <h3 className="font-serif text-lg font-bold mb-1 transition-colors">
-                  {product.name}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{product.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+              <ChevronLeft className="h-6 w-6" />
+            </Button>
+          </div>
+          <div className="flex sm:hidden absolute -right-2 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-10 w-10 rounded-full bg-background/80 backdrop-blur-sm pointer-events-auto border-white/10"
+              onClick={() => scroll("right")}
+            >
+              <ChevronRight className="h-6 w-6" />
+            </Button>
+          </div>
+
+          <div
+            ref={scrollRef}
+            className="flex sm:grid overflow-x-auto sm:overflow-x-visible pb-6 sm:pb-0 gap-4 md:gap-5 snap-x snap-mandatory scrollbar-hide sm:grid-cols-2 lg:grid-cols-4 -mx-4 px-4 sm:mx-0 sm:px-0"
+          >
+            {displayProducts.map((product, index) => (
+              <Card
+                key={`${selectedCategory}-${index}`}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className="group min-w-[280px] sm:min-w-0 snap-center hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 overflow-hidden border-white/20 hover:border-primary/50 animate-in fade-in slide-in-from-bottom"
+                style={{ animationDelay: `${index * 80}ms` }}
+              >
+                <div className="aspect-square overflow-hidden relative h-40">
+                  <img
+                    src={product.image || "/placeholder.svg"}
+                    alt={product.name}
+                    className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent transition-opacity duration-500 ${hoveredIndex === index ? "opacity-100" : "opacity-0"}`}
+                  />
+                  {hoveredIndex === index && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Sparkles className="h-10 w-10 text-white animate-pulse" />
+                    </div>
+                  )}
+                </div>
+                <CardContent className="p-4">
+                  <h3 className="font-serif text-lg font-bold mb-1 group-hover:text-primary transition-colors">
+                    {product.name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{product.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -31,7 +31,7 @@ export function Contact() {
                 href="tel:+911234567890"
                 className=" hover:underline font-medium text-lg transition-colors"
               >
-                +91 123 456 7890
+                +91 930 044 1770
               </a>
             </CardContent>
           </Card>
@@ -49,7 +49,7 @@ export function Contact() {
                 href="mailto:info@yourcompany.com"
                 className=" hover:underline font-medium transition-colors break-all"
               >
-                info@yourcompany.com
+                ssenterprises.bharat@gmail.com
               </a>
             </CardContent>
           </Card>
