@@ -28,7 +28,7 @@ export function Contact() {
               <h3 className="font-serif text-xl font-bold mb-2">Phone</h3>
               
               <a
-                href="tel:+911234567890"
+                href="tel:+919300441770"
                 className=" hover:underline font-medium text-lg transition-colors"
               >
                 +91 930 044 1770
