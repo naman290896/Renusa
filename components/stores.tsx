@@ -67,9 +67,6 @@ export function Stores() {
                   {store.name}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">{store.description}</p>
-                <ExternalLink
-                  className="h-5 w-5 mt-4 mx-auto text-white transition-all duration-300"
-                />
               </CardContent>
             </Card>
           ))}
