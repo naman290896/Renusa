@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Store, ExternalLink } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import Image from "@/node_modules/next/image"
 
 const stores = [
   {
@@ -28,8 +29,6 @@ const stores = [
 ]
 
 export function Stores() {
-  const [hoveredStore, setHoveredStore] = useState<number | null>(null)
-
   return (
     <section id="stores" className="py-24 bg-white/5 relative overflow-hidden border-t border-white/10">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.05)_0%,transparent_50%)]" />
@@ -53,28 +52,23 @@ export function Stores() {
           {stores.map((store, index) => (
             <Card
               key={index}
-              onMouseEnter={() => setHoveredStore(index)}
-              onMouseLeave={() => setHoveredStore(null)}
-              className="group hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 border-white/20 hover:border-primary/30 hover:-translate-y-2 animate-in fade-in slide-in-from-bottom"
+              className="group transition-all duration-500 border-white/20 animate-in fade-in slide-in-from-bottom"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <CardContent className="p-8 text-center relative">
                 <div className="mb-6 h-24 flex items-center justify-center relative">
-                  <img
+                  <Image
                     src={store.logo || "/placeholder.svg"}
                     alt={store.name}
-                    className="max-h-full max-w-full object-contain opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
+                    className="max-h-full max-w-full object-contain opacity-70 transition-all duration-300"
                   />
-                  {hoveredStore === index && (
-                    <div className="absolute inset-0 bg-white/5 rounded-lg animate-in fade-in" />
-                  )}
                 </div>
                 <h3 className="font-serif text-2xl font-bold mb-2 transition-colors">
                   {store.name}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">{store.description}</p>
                 <ExternalLink
-                  className={`h-5 w-5 mt-4 mx-auto text-white transition-all duration-300 ${hoveredStore === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}
+                  className="h-5 w-5 mt-4 mx-auto text-white transition-all duration-300"
                 />
               </CardContent>
             </Card>

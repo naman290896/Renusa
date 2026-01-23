@@ -4,6 +4,7 @@ import { useRef, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Sparkles, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "@/node_modules/next/image"
 
 const productsByCategory = {
   "Fryums": [
@@ -155,7 +156,7 @@ export function Products() {
                 style={{ animationDelay: `${index * 80}ms` }}
               >
                 <div className="aspect-square overflow-hidden relative h-40">
-                  <img
+                  <Image
                     src={product.image || "/placeholder.svg"}
                     alt={product.name}
                     className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"
