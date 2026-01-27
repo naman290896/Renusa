@@ -129,8 +129,16 @@ export function Navbar() {
               ))}
               <div className="pt-2 px-2">
                 <Button
-                  onClick={() => scrollToSection("contact")}
-                  className="w-full shadow-md shadow-primary/15"
+                  onClick={() => scrollToSection("cities")}
+                  className="
+                  w-full
+    ml-2
+    bg-orange-500 text-white
+    shadow-md shadow-orange-500/25
+    hover:bg-orange-600
+    hover:shadow-lg hover:shadow-orange-500/40
+    transition-all duration-300
+  "
                 >
                   <MessageCircle className="h-4 w-4 mr-2" />
                   Get in Touch
