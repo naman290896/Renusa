@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { geoMercator, geoPath } from "d3-geo";
 import indiaGeo from "../app/data/india_state.json";
 import {
@@ -41,87 +41,108 @@ export function Cities() {
   );
 
   const path = geoPath(projection);
+  const [openCity, setOpenCity] = useState<string | null>(null);
   return (
     <section
-  id="cities"
-  className="py-16 md:py-24 relative overflow-hidden border-t border-border"
->
-  {/* Header */}
-  <div className="text-center mb-12 md:mb-16 px-4">
-    <div className="flex items-center justify-center mb-4">
-      <MapPin className="h-10 w-10 animate-bounce" />
-    </div>
-    <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
-      Our Presence
-    </h2>
-    <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-      Available across major cities in India
-    </p>
-  </div>
+      id="cities"
+      className="py-16 md:py-24 relative overflow-hidden border-t border-border"
+    >
+      {/* Header */}
+      <div className="text-center mb-12 md:mb-16 px-4">
+        <div className="flex items-center justify-center mb-4">
+          <MapPin className="h-10 w-10 animate-bounce" />
+        </div>
+        <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+          Our Presence
+        </h2>
+        <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
+          Available across major cities in India
+        </p>
+      </div>
 
-  {/* Content */}
-  <div className="bg-white">
-    <div
-      className="
+      {/* Content */}
+      <div className="bg-white">
+        <div
+          className="
         max-w-6xl mx-auto
         flex flex-col-reverse
         md:flex-row
         gap-8 md:gap-12
         px-4
       "
-    >
-      {/* Contact section */}
-      <div
-        className="
+        >
+          {/* Contact section */}
+          <div
+            className="
           w-full md:w-1/2
           flex md:items-center
         "
-      >
-        <div className="w-full max-w-[500px] mx-auto p-4">
-          <Contact />
-        </div>
-      </div>
-
-      {/* Map section */}
-      <div className="w-full md:w-1/2 flex justify-center">
-        <div className="w-full max-w-[500px] aspect-square p-4">
-          <svg
-            viewBox="0 0 500 500"
-            className="w-full h-full"
           >
-            {/* Map */}
-            <g className="fill-white stroke-blue-400 stroke-[0.6]">
-              {indiaGeo.features.map((f: any, i: number) => (
-                <path key={i} d={path(f) || ""} />
-              ))}
-            </g>
+            <div className="w-full max-w-[500px] mx-auto p-4">
+              <Contact />
+            </div>
+          </div>
 
-            {/* Pins */}
-            {CITIES.map((c) => {
-              const [x, y] = projection([c.lon, c.lat]) || [0, 0];
-              return (
-                <Tooltip key={c.name}>
-                  <TooltipTrigger asChild>
-                    <g
-                      transform={`translate(${x}, ${y})`}
-                      className="cursor-pointer"
+          {/* Map section */}
+          <div className="w-full md:w-1/2 flex justify-center">
+            <div className="w-full max-w-[500px] aspect-square p-4">
+              <svg viewBox="0 0 500 500" className="w-full h-full">
+                {/* Map */}
+                <g className="fill-white stroke-blue-400 stroke-[0.6]">
+                  {indiaGeo.features.map((f: any, i: number) => (
+                    <path key={i} d={path(f) || ""} />
+                  ))}
+                </g>
+
+                {/* Pins */}
+                {CITIES.map((c) => {
+                  const [x, y] = projection([c.lon, c.lat]) || [0, 0];
+                  const isOpen = openCity === c.name;
+
+                  return (
+                    <Tooltip
+                      key={c.name}
+                      open={isOpen}
+                      onOpenChange={(v) => {
+                        // allow hover open/close on desktop
+                        if (!("ontouchstart" in window)) {
+                          setOpenCity(v ? c.name : null);
+                        }
+                      }}
                     >
-                      <circle r="10" className="fill-blue-500/20 animate-ping" />
-                      <circle r="4" className="fill-blue-600" />
-                    </g>
-                  </TooltipTrigger>
-                  <TooltipContent side="top" className="text-xs">
-                    {c.name}
-                  </TooltipContent>
-                </Tooltip>
-              );
-            })}
-          </svg>
+                      <TooltipTrigger asChild>
+                        <g
+                          transform={`translate(${x}, ${y})`}
+                          className="cursor-pointer"
+                          onPointerDown={(e) => {
+                            // mobile tap
+                            if (e.pointerType === "touch") {
+                              e.preventDefault();
+                              setOpenCity((prev) =>
+                                prev === c.name ? null : c.name
+                              );
+                            }
+                          }}
+                        >
+                          <circle
+                            r="10"
+                            className="fill-blue-500/20 animate-ping"
+                          />
+                          <circle r="4" className="fill-blue-600" />
+                        </g>
+                      </TooltipTrigger>
+
+                      <TooltipContent side="top" className="text-xs">
+                        {c.name}
+                      </TooltipContent>
+                    </Tooltip>
+                  );
+                })}
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
+    </section>
   );
 }
