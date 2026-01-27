@@ -66,7 +66,7 @@ export function Stores() {
                 <h3 className="font-serif text-2xl font-bold mb-2 transition-colors">
                   {store.name}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed hidden md:block">{store.description}</p>
+                <p className="text-muted-foreground leading-relaxed">{store.description}</p>
               </CardContent>
             </Card>
           ))}
