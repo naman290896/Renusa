@@ -14,7 +14,7 @@ const stores = [
   {
     name: "DMart",
     description: "Stocked in DMart stores",
-    logo: "/generic-grocery-logo.png",
+    logo: "/dmart.jpg",
   },
   {
     name: "Shubham K Mart",
@@ -52,10 +52,10 @@ export function Stores() {
           {stores.map((store, index) => (
             <Card
               key={index}
-              className="group transition-all duration-500 border-border animate-in fade-in slide-in-from-bottom"
+              className="group transition-all duration-500 border-border animate-in fade-in slide-in-from-bottom pt-0"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <CardContent className="p-8 text-center relative">
+              <CardContent className="p-4 text-center relative">
                 <div className="mb-6 h-24 flex items-center justify-center relative">
                   <Image
                     src={store.logo || "/placeholder.svg"}
@@ -66,7 +66,7 @@ export function Stores() {
                 <h3 className="font-serif text-2xl font-bold mb-2 transition-colors">
                   {store.name}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">{store.description}</p>
+                <p className="text-muted-foreground leading-relaxed hidden md:block">{store.description}</p>
               </CardContent>
             </Card>
           ))}
