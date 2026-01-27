@@ -129,7 +129,7 @@ export function Navbar() {
               ))}
               <div className="pt-2 px-2">
                 <Button
-                  onClick={() => scrollToSection("cities")}
+                  onClick={() => scrollToSection("contactUs")}
                   className="
                   w-full
     ml-2

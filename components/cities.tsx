@@ -72,7 +72,7 @@ export function Cities() {
       "
         >
           {/* Contact section */}
-          <div
+          <div id="contactUs"
             className="
           w-full md:w-1/2
           flex md:items-center
