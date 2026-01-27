@@ -119,7 +119,7 @@ export function Products() {
             Our Products
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto text-balance leading-relaxed">
-            Handpicked selection of the finest mouth fresheners and fyrums
+            Handpicked selection of the finest mouth fresheners and fryums
           </p>
         </div>
 

@@ -191,7 +191,7 @@ export function Hero() {
           <div className="space-y-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/90 backdrop-blur-sm border border-border shadow-sm animate-in fade-in slide-in-from-left duration-1000">
               <Star className="h-4 w-4 text-amber-500 fill-amber-500" />
-              <span className="text-sm font-medium">Premium Quality Since 2020</span>
+              <span className="text-sm font-medium">Premium Quality Since 2017</span>
             </div>
 
             <div className="space-y-4 animate-in fade-in slide-in-from-left duration-1000 delay-200">

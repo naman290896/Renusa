@@ -7,9 +7,9 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Renusa Foods | Premium Mouth Fresheners & Fyrums",
+  title: "Renusa Foods | Premium Mouth Fresheners & Fryums",
   description:
-    "Discover our exquisite collection of traditional mouth fresheners and fyrums. Quality products available across major cities.",
+    "Discover our exquisite collection of traditional mouth fresheners and fryums. Quality products available across major cities.",
   generator: "v0.app",
 }
 

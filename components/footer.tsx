@@ -10,7 +10,7 @@ export function Footer() {
         <div className="flex flex-col items-center text-center">
           <div className="flex items-center gap-2 mb-4 group cursor-pointer">
             <span className="font-serif text-2xl font-bold group-hover:text-primary transition-colors">
-              RENUSA FOODS PVT. LTD.
+              RENUSA FOODS
             </span>
           </div>
           <div className="text-sm text-muted-foreground flex items-center gap-2">
