@@ -116,7 +116,6 @@ export function Navbar() {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden animate-in slide-in-from-top-2 duration-300 bg-card/98 backdrop-blur-xl border border-border rounded-2xl shadow-lg mt-2">
-            <div className="h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent my-4" />
             <div className="pb-6 pt-2 flex flex-col gap-1">
               {navLinks.map((link) => (
                 <button
@@ -132,7 +131,6 @@ export function Navbar() {
                   onClick={() => scrollToSection("contactUs")}
                   className="
                   w-full
-    ml-2
     bg-orange-500 text-white
     shadow-md shadow-orange-500/25
     hover:bg-orange-600
